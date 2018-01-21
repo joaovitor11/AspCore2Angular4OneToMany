@@ -73,14 +73,10 @@ namespace AspCore2Angular4OneToMany.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmpregado([FromRoute] int id, [FromBody] Empregado empregado)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != empregado.EmpregadoId)
-            {
-                return BadRequest();
             }
 
             _context.Entry(empregado).State = EntityState.Modified;
@@ -91,14 +87,7 @@ namespace AspCore2Angular4OneToMany.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EmpregadoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return NoContent();
