@@ -9,14 +9,9 @@ namespace AspCore2Angular4OneToMany.Models
         public virtual DbSet<Departamento> Departamento { get; set; }
         public virtual DbSet<Empregado> Empregado { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=joao\sqlexpress;Database=db_teste1;Trusted_Connection=True;");
-            }
-        }
+        public db_teste1Context(DbContextOptions<db_teste1Context> options)
+: base(options)
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

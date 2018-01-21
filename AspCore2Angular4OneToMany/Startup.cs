@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspCore2Angular4OneToMany.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,6 +25,7 @@ namespace AspCore2Angular4OneToMany
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<db_teste1Context>(options => options.UseSqlServer(Configuration.GetConnectionString("db_teste1Database")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
