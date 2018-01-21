@@ -20,14 +20,26 @@ namespace AspCore2Angular4OneToMany.Controllers
             _context = context;
         }
 
-        // GET: api/Empregado
+        [Route("~/api/GetAllEmpregado")]
         [HttpGet]
-        public IEnumerable<Empregado> GetEmpregado()
+        public IActionResult GetEmpregado()
         {
-            return _context.Empregado;
+            var result = from empregado in _context.Empregado
+                         join dep in _context.Departamento on empregado.DepartamentoId equals dep.DepartamentoId
+                         select new
+                         {
+                             empid = empregado.EmpregadoId,
+                             depid = dep.DepartamentoId,
+                             depnome = dep.Nome,
+                             empnome = empregado.Nome,
+                             empsob = empregado.Sobrenome,
+                             empemail = empregado.Email
+                                                          
+                         };
+            return Ok(result);
         }
 
-        // GET: api/Empregado/5
+        [Route("~/api/GetEmpregado")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEmpregado([FromRoute] int id)
         {
@@ -36,17 +48,28 @@ namespace AspCore2Angular4OneToMany.Controllers
                 return BadRequest(ModelState);
             }
 
-            var empregado = await _context.Empregado.SingleOrDefaultAsync(m => m.EmpregadoId == id);
+            var result = from empregado in _context.Empregado
+                         join dep in _context.Departamento on empregado.DepartamentoId equals dep.DepartamentoId where empregado.EmpregadoId == id
+                         select new
+                         {
+                             empid = empregado.EmpregadoId,
+                             depid = dep.DepartamentoId,
+                             depnome = dep.Nome,
+                             empnome = empregado.Nome,
+                             empsob = empregado.Sobrenome,
+                             empemail = empregado.Email
 
-            if (empregado == null)
+                         };
+            
+            if (result == null)
             {
                 return NotFound();
             }
 
-            return Ok(empregado);
+            return Ok(result);
         }
 
-        // PUT: api/Empregado/5
+        [Route("~/api/UpdateEmpregado")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmpregado([FromRoute] int id, [FromBody] Empregado empregado)
         {
@@ -81,7 +104,7 @@ namespace AspCore2Angular4OneToMany.Controllers
             return NoContent();
         }
 
-        // POST: api/Empregado
+        [Route("~/api/AddEmpregado")]
         [HttpPost]
         public async Task<IActionResult> PostEmpregado([FromBody] Empregado empregado)
         {
@@ -96,7 +119,7 @@ namespace AspCore2Angular4OneToMany.Controllers
             return CreatedAtAction("GetEmpregado", new { id = empregado.EmpregadoId }, empregado);
         }
 
-        // DELETE: api/Empregado/5
+        [Route("~/api/DeleteEmpregado/{id}")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmpregado([FromRoute] int id)
         {
