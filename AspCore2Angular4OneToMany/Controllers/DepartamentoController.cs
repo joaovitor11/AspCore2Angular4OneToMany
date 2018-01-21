@@ -20,14 +20,14 @@ namespace AspCore2Angular4OneToMany.Controllers
             _context = context;
         }
 
-        // GET: api/Departamento
+        [Route("~/api/GetAllDepartamento")]
         [HttpGet]
         public IEnumerable<Departamento> GetDepartamento()
         {
             return _context.Departamento;
         }
 
-        // GET: api/Departamento/5
+        [Route("~/api/GetDepartamento")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDepartamento([FromRoute] int id)
         {
@@ -46,7 +46,7 @@ namespace AspCore2Angular4OneToMany.Controllers
             return Ok(departamento);
         }
 
-        // PUT: api/Departamento/5
+        [Route("~/api/UpdateDepartamento")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDepartamento([FromRoute] int id, [FromBody] Departamento departamento)
         {
@@ -81,7 +81,7 @@ namespace AspCore2Angular4OneToMany.Controllers
             return NoContent();
         }
 
-        // POST: api/Departamento
+        [Route("~/api/AddDepartamento")]
         [HttpPost]
         public async Task<IActionResult> PostDepartamento([FromBody] Departamento departamento)
         {
@@ -96,7 +96,7 @@ namespace AspCore2Angular4OneToMany.Controllers
             return CreatedAtAction("GetDepartamento", new { id = departamento.DepartamentoId }, departamento);
         }
 
-        // DELETE: api/Departamento/5
+        [Route("~/api/DeleteDepartamento/{id}")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDepartamento([FromRoute] int id)
         {
