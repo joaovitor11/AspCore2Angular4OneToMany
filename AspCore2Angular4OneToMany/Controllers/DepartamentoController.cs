@@ -48,16 +48,11 @@ namespace AspCore2Angular4OneToMany.Controllers
 
         [Route("~/api/UpdateDepartamento")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDepartamento([FromRoute] int id, [FromBody] Departamento departamento)
+        public async Task<IActionResult> PutDepartamento([FromBody] Departamento departamento)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != departamento.DepartamentoId)
-            {
-                return BadRequest();
             }
 
             _context.Entry(departamento).State = EntityState.Modified;
@@ -68,14 +63,7 @@ namespace AspCore2Angular4OneToMany.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DepartamentoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+
             }
 
             return NoContent();
