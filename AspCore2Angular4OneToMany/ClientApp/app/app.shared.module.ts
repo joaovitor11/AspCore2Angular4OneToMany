@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { DepartamentoComponent } from './components/Departamento/departamento.component';
+import { EmpregadoComponent } from './components/Empregado/empregado.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { DepartamentoComponent } from './components/Departamento/departamento.co
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        DepartamentoComponent
+        DepartamentoComponent,
+        EmpregadoComponent
     ],
     imports: [
         CommonModule,
@@ -26,6 +28,7 @@ import { DepartamentoComponent } from './components/Departamento/departamento.co
         FormsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'empregado', component: EmpregadoComponent },
             { path: 'departamento', component: DepartamentoComponent },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
