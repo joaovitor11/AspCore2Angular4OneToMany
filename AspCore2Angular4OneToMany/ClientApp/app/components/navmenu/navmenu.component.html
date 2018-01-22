@@ -13,6 +13,11 @@
         <div class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/empregado']">
+                        <span class='glyphicon glyphicon-empregado'></span> Empregado Management
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/departamento']">
                         <span class='glyphicon glyphicon-departamento'></span> Departamento Management
                     </a>
