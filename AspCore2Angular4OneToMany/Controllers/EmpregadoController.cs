@@ -22,21 +22,9 @@ namespace AspCore2Angular4OneToMany.Controllers
 
         [Route("~/api/GetAllEmpregado")]
         [HttpGet]
-        public IActionResult GetEmpregado()
+        public IEnumerable<Empregado> GetEmpregado()
         {
-            var result = from empregado in _context.Empregado
-                         join dep in _context.Departamento on empregado.DepartamentoId equals dep.DepartamentoId
-                         select new
-                         {
-                             empid = empregado.EmpregadoId,
-                             depid = dep.DepartamentoId,
-                             depnome = dep.Nome,
-                             empnome = empregado.Nome,
-                             empsob = empregado.Sobrenome,
-                             empemail = empregado.Email
-                                                          
-                         };
-            return Ok(result);
+            return _context.Empregado;
         }
 
         [Route("~/api/GetEmpregado")]
@@ -48,30 +36,19 @@ namespace AspCore2Angular4OneToMany.Controllers
                 return BadRequest(ModelState);
             }
 
-            var result = from empregado in _context.Empregado
-                         join dep in _context.Departamento on empregado.DepartamentoId equals dep.DepartamentoId where empregado.EmpregadoId == id
-                         select new
-                         {
-                             empid = empregado.EmpregadoId,
-                             depid = dep.DepartamentoId,
-                             depnome = dep.Nome,
-                             empnome = empregado.Nome,
-                             empsob = empregado.Sobrenome,
-                             empemail = empregado.Email
+            var empregado = await _context.Empregado.SingleOrDefaultAsync(m => m.EmpregadoId == id);
 
-                         };
-            
-            if (result == null)
+            if (empregado == null)
             {
                 return NotFound();
             }
 
-            return Ok(result);
+            return Ok(empregado);
         }
 
         [Route("~/api/UpdateEmpregado")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmpregado([FromRoute] int id, [FromBody] Empregado empregado)
+        public async Task<IActionResult> PutEmpregado([FromBody] Empregado empregado)
         {
 
             if (!ModelState.IsValid)
