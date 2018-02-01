@@ -7,6 +7,7 @@
 * ASP.NET Core 2;
 * C#;
 * Angular 4;
+* WEB API;
 * MS SQL SERVER;
 * Entity Framework Core.
 
