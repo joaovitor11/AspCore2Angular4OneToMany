@@ -1,8 +1,8 @@
 # AspCore2Angular4OneToMany
 
-### Exemplo de CRUD exemplificando a relação de duas entidades 1 para N. 
+### CRUD Example implementing a relation of two entities 1 to Many. 
 
-#### Linguagens de programação e tecnologias utilizadas no desenvolvimento da aplicação:
+#### Programming languages and technologies used in application development:
 
 * ASP.NET Core 2;
 * C#;
@@ -11,10 +11,10 @@
 * MS SQL SERVER;
 * Entity Framework Core.
 
-#### Ferramentas necessárias para a execução do projeto:
+#### Tools required to project executing:
 
-* Foi utilizado o Visual Studio 2017 versão 15.5.2, já que versões anteriores não possuem o ASP.NET Core 2, o que inviabiliza a abertura correta do mesmo.
-* Visual Studio Code - Usando este editor, o projeto poderá ser aberto e executado no Linux, Mac e Windows);
-* SQL SERVER Managment Studio - A versão utilizada foi a 2014, mas é possível utilizar versões mais recentes e anteriores, até a 2008.
+* Was used the IDE Visual Studio 2017 with the update version 15.5.2, because previous versions haven't the ASP.NET CORE 2, that makes it impossible to open of the same.
+* Visual Studio Code - Using this editor, the project can be opened and executing in operational systems Linux, Mac OS and Windows;
+* SQL SERVER Managment Studio - The programming version used was 2014, but is possible used the 2016 version or older versions until 2008.
 
-#### OBS: Antes da execução é necessário criar a base de dados e editar a linha 4 do arquivo appsettings.json e informar o respectivo servidor. O nome da string de conexão "db_teste1Database" (deve permanecer o mesmo), caso contrário, é necessário alterar também a linha 28 do arquivo Startup.cs.
+#### Note: Before running it is necessary to create the database and edit line 4 of the appsettings.json file and inform its server. The connection string name "db_teste1Database" (should remain the same), otherwise you must also change line 28 of the Startup.cs file.
